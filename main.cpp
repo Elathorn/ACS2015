@@ -1,5 +1,8 @@
 #include "Weapon.h"
 #include "Machine.h"
+#include "GameLogic.h"
+#include "IOManager.h"
+#include <clocale>
 
 //temp
 #include <iostream>
@@ -8,15 +11,23 @@ using namespace std;
 
 int main()
 {
-	Weapon* weapon = new Weapon ("Maverick", 0, 50, 20, 0, 0, 0, 'B');
-	Machine* aircraft = new Machine ("F16", 100, 'A', weapon);
-	cout << weapon->getName() << endl << aircraft->getWeapon()->getHardAttack();
-	cout << aircraft->getHP() << endl;
-	aircraft->changeHP(5);
-	cout << aircraft->getHP() << endl;
-	aircraft->changeHP(-150);
-	cout << aircraft->getHP() << endl;
-	aircraft->changeHP(50);
-	cout << aircraft->getHP() << endl;
+	setlocale(LC_ALL, "");
+	//Tworzenie podstawowych klas
+	GameLogic* gameLogic = new GameLogic();
+	IOManager* ioManager = new IOManager(gameLogic);
+	for (int i=0; i<2; i++)
+	{
+	cout << gameLogic->getMachine(i)->getName() << endl;
+	
+	cout << gameLogic->getMachine(i)->getHP() << endl;
+	cout << gameLogic->getMachine(i)->getHPStatus() << endl;
+	cout << gameLogic->getMachine(i)->getType() << endl;
+	cout << gameLogic->getMachine(i)->getWeapon()->getName() << endl;
+	cout << gameLogic->getMachine(i)->getMobility() << endl;
+	cout << gameLogic->getMachine(i)->getView() << endl;
+	cout << gameLogic->getMachine(i)->getStatus() << endl;
+
+
+	}
 	getchar();
 }

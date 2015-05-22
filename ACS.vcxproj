@@ -76,11 +76,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameLogic.cpp" />
+    <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="Machine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameLogic.h" />
+    <ClInclude Include="IOManager.h" />
     <ClInclude Include="Machine.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>

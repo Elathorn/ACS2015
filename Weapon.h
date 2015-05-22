@@ -24,6 +24,12 @@ protected:
 	int _ASWAttack; //atak ASW (anti submarine warfare)
 	int _SEADAttack; //atak SEAD (Suppression of Enemy Air Defenses)
 	int _mobility; //zmiana w mobilnoœci pojazdu
-	char _availability; //mo¿na zamontowaæ na H (heli), A (aircraft), B (both), N (neither, "brak na stanie")
+	char _availability; //mo¿na zamontowaæ na H (heli), A (aircraft), B (both), U (unavaible, "brak na stanie")
+
+protected: //MAGIC NUMBERS
+	static const char CAN_MOUNT_ON_HELI = 'H';
+	static const char CAN_MOUNT_ON_AIRCRAFT = 'A';
+	static const char CAN_MOUNT_ON_BOTH = 'B';
+	static const char UNAVAILABLE = 'U';
 };
 
