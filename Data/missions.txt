@@ -1,0 +1,20 @@
+!
+Misja testowa.*
+1 
+1 2 3 4 5
+1 2 3 4
+1 2 3
+1 2 3 4
+Wow, wow, taka trudna misja!*
+Wygra³eœ, najs!*
+Przegra³eœ, lama!*
+
+Druga misja testowa, huh?*
+1
+1 2 3 4 5
+1 2 3 4
+1 2 3
+1 2 3 4
+you sure what you're doing?*
+TAK JESTEM!*
+JESTÊ HELIKOPTERÊ*

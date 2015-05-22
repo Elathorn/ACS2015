@@ -9,7 +9,7 @@ public:
 	//Konstruktor i destruktor
 	Machine(string name, short int hp, char type, Weapon* weapon, int _mobility, int _view, char _status); //konstruktor do wczytywania
 	//z plików, zarówno layoutów maszyn jak i (przysz³oœciowo) z save
-	Machine(Machine& layout); //konstruktor w³asciwy dla dodawania nowych maszyn dla gracza
+	Machine(Machine& layout, char status); //konstruktor w³asciwy dla dodawania nowych maszyn dla gracza
 	~Machine(void);
 	//GETery
 	string getName() {return _name;}

@@ -12,7 +12,7 @@ Machine::Machine(string name, short int hp, char type, Weapon* weapon,  int mobi
 	_status=status;
 }
 
-Machine::Machine (Machine& layout)
+Machine::Machine (Machine& layout, char status)
 {
 	_name=layout._name;
 	_hp=layout._hp;
@@ -20,7 +20,7 @@ Machine::Machine (Machine& layout)
 	_weapon=layout._weapon;
 	_mobility=layout._mobility;
 	_view=layout._view;
-	_status='A';
+	_status=status;
 }
 
 Machine::~Machine(void)

@@ -1,2 +1,4 @@
+Format pliku: nazwa, atak przeciw piechocie, atak przeciw pojazdom, atak nawodny, atak podwodny, atak przeciw radarom, modyfikacja mobilnoœci samolotu, dostêpnoœæ do zamontowania (na H (heli), A (aircraft), B (both), U (unavaible, "brak na stanie"))
+!
 Maverick 10 20 10 0 0 -3 A
 GAU-8 20 5 5 0 0 -5 A

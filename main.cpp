@@ -15,19 +15,17 @@ int main()
 	//Tworzenie podstawowych klas
 	GameLogic* gameLogic = new GameLogic();
 	IOManager* ioManager = new IOManager(gameLogic);
-	for (int i=0; i<2; i++)
-	{
-	cout << gameLogic->getMachine(i)->getName() << endl;
 	
-	cout << gameLogic->getMachine(i)->getHP() << endl;
-	cout << gameLogic->getMachine(i)->getHPStatus() << endl;
-	cout << gameLogic->getMachine(i)->getType() << endl;
-	cout << gameLogic->getMachine(i)->getWeapon()->getName() << endl;
-	cout << gameLogic->getMachine(i)->getMobility() << endl;
-	cout << gameLogic->getMachine(i)->getView() << endl;
-	cout << gameLogic->getMachine(i)->getStatus() << endl;
+	for (int i=0; i<2; i++)
+		{
+	cout << gameLogic->getMission(i)->getName() << endl;
+	cout << gameLogic->getMission(i)->getMissionInfo() << endl;
+	cout << gameLogic->getMission(i)->getMissionWin() << endl;
+	cout << gameLogic->getMission(i)->getMissionLose() << endl;
+		}
 
 
-	}
+
+	
 	getchar();
 }
