@@ -5,7 +5,7 @@
 class AirCarrier
 {
 public:
-	AirCarrier(int, int, int);
+	AirCarrier(int, int, int, int);
 	~AirCarrier(void);
 	//carrier
 	int getHP() {return _hp;}
@@ -27,6 +27,7 @@ protected:
 	int _hp; // od 0 do 100
 	int _points; //zdobyte punkty
 	int _scoutPoints; //punkty zwiadu, pozwalaj¹ lepiej odkrywaæ misje
+	int _repairPoints; //punkty naprawy, przydzielane ka¿dej tury
 
 protected: //magic numbers
 	static const int MAX_HP = 100;

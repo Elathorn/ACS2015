@@ -77,6 +77,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AirCarrier.cpp" />
+    <ClCompile Include="BusyManager.cpp" />
     <ClCompile Include="Campaign.cpp" />
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="IOManager.cpp" />
@@ -88,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AirCarrier.h" />
+    <ClInclude Include="BusyManager.h" />
     <ClInclude Include="Campaign.h" />
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="IOManager.h" />

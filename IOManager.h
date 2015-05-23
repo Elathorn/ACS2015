@@ -29,6 +29,7 @@ protected: //MAGIC NUMBERS
 	static const int NO_WEAPON = -1;
 	static const char CHAR_COMMENT_END = '!';
 	static const char CHAR_STRING_END = '*';
+	static const char CHAR_STRING_START = '*';
 	static const string DATA_FILES_LOCATION;
 };
 

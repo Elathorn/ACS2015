@@ -1,17 +1,22 @@
 #include "AirCarrier.h"
 
 
-AirCarrier::AirCarrier(int hp, int points, int scoutPoints)
+AirCarrier::AirCarrier(int hp, int points, int scoutPoints, int repairPoints)
 {
 	_hp=hp;
 	_points=points;
 	_scoutPoints=scoutPoints;
+	_repairPoints=repairPoints;
 }
 
 
 AirCarrier::~AirCarrier(void)
+{
+	for(std::vector<Machine*>::iterator it = _MachinesList.begin(); it != _MachinesList.end(); ++it) 
 	{
+		delete *it;
 	}
+}
 
 void AirCarrier::changeHP (int amount)
 {

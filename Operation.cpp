@@ -34,18 +34,11 @@ void Operation::startMission(int id)
 	}
 	else
 	{
-		bool missionWon = _gameLogic->calculateMission(id);
-		if (missionWon)
-		{
-			_missionWonCount++;
-		}
-		else
-		{
-			_missionLostCount++;
-		}
+		_gameLogic->calculateMission(id);
 	}
 	if (++_nextMission == MISSIONS_IN_OPERATION)
 		return; //TO DO metoda zwracaj¹ca kampanii informacji o zakoñczeniu operacji
+	//TO DO zczyszczenie znaczników busy na potrzebê nastêpnej operacji
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
@@ -62,7 +55,7 @@ void Operation::scout()
 		if (rand()%100+1 < scoutPointsValue) //losujemy czy uda³o siê odkryæ misje, jeœli tak
 		{
 			lastScoutedMission++; //zwiêkszamy licznik, misje musz¹ byæ odkrywane po kolei
-			scoutPointsValue-=25; //zmniejszamy szansê na odkrycie nastêpnej misji
+			scoutPointsValue-=SCOUT_POINTS_LOST_PER_SCOUT; //zmniejszamy szansê na odkrycie nastêpnej misji
 		}
 		else
 			scoutPointsValue=0; //misjê musz¹ byæ wykonywane po kolei, wiêc uniemo¿liwiamy nastêpne odkrycie

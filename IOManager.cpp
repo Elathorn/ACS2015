@@ -77,26 +77,27 @@ void IOManager::loadMachinesOnCarrier (string location)
 void IOManager::loadMissions (string location)
 {
 	ifstream in(location.c_str());
+	jumpOverComment(in);
 	string name; 
 	int missionDif, soft, hard, air, naval, asw, sead, view, mobility, aircraft, heli, pointsReward, scoutReward, machineHPLossOnWin; 
 	int pointsLoss, scoutLoss, machineHPLossOnLose, carrierHPLoss; 
 	string missionInfo, missionWin, missionLose;
 	while(!in.eof())
 	{
-		jumpOverComment(in);
-		getline(in, name, CHAR_STRING_END);
-		name.erase(0,1); //usuwanie znaku pocz¹tku nowej linii
+		string temp;
+		getline(in, temp, CHAR_STRING_START); //zczyszczenie wczeœniejszych znaków z bufora, w tym znaków nowej linii
+		getline(in, name, CHAR_STRING_END); //i wczytanie w³aœciwego stringa
 		in >> missionDif;
 		in >> soft >> hard >> air >> naval >> asw >> sead;
 		in >> view >> mobility >> aircraft >> heli;
 		in >> pointsReward >> scoutReward >> machineHPLossOnWin;
 		in >> pointsLoss >> scoutLoss >> machineHPLossOnLose >> carrierHPLoss;
+		getline(in, temp, CHAR_STRING_START);
 		getline(in, missionInfo, CHAR_STRING_END);
-		missionInfo.erase(0,1); //usuwanie znaku pocz¹tku nowej linii
+		getline(in, temp, CHAR_STRING_START);
 		getline(in, missionWin, CHAR_STRING_END);
-		missionWin.erase(0,1); //usuwanie znaku pocz¹tku nowej linii
+		getline(in, temp, CHAR_STRING_START);
 		getline(in, missionLose, CHAR_STRING_END);
-		missionLose.erase(0,1); //usuwanie znaku pocz¹tku nowej linii
 		Mission* mission = new Mission(name, missionDif, soft, hard, air, naval, asw, sead, view, mobility, aircraft, heli, pointsReward, 
 			scoutReward, machineHPLossOnWin, pointsLoss, scoutLoss, machineHPLossOnLose, carrierHPLoss, missionInfo, missionWin, missionLose);
 		_gameLogic->addMission(mission);
@@ -107,9 +108,9 @@ void IOManager::loadCarrierStats (string location)
 {
 	ifstream in(location.c_str());
 	jumpOverComment(in);
-	int hp, points, scoutPoints;
-	in >> hp >> points >> scoutPoints;
-	_gameLogic->createCV(hp, points, scoutPoints);
+	int hp, points, scoutPoints, repairPoints;
+	in >> hp >> points >> scoutPoints >> repairPoints;
+	_gameLogic->createCV(hp, points, scoutPoints, repairPoints);
 }
 
 void IOManager::loadCampaign (string location)

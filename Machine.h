@@ -22,6 +22,7 @@ public:
 	char getStatus() {return _status;}
 	//SETery 
 	void setWeapon(Weapon* weapon) {_weapon=weapon;}
+	void setStatus(char status) {_status=status;}
 	//inne
 	void changeHP (int amount);
 protected:

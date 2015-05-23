@@ -33,5 +33,6 @@ protected: //magic numbers
 	static const int NO_MISSION_CHANCE = 33; //%
 	int NUMBER_OF_MISSION_TYPES; //iloœæ ró¿nych misji
 	static const int BASE_SCOUT_CHANCE = 100; 
+	static const int SCOUT_POINTS_LOST_PER_SCOUT = 25;
 };
 

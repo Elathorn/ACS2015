@@ -4,6 +4,7 @@
 GameLogic::GameLogic(void)
 {
 	_cv = NULL;
+	_busyManager = new BusyManager();
 }
 
 
@@ -12,7 +13,7 @@ GameLogic::~GameLogic(void)
 	}
 
 
-bool GameLogic::calculateMission(int missionNumber)
+void GameLogic::calculateMission(int missionNumber)
 {
 	//TO DO
 	Machine* machine = _cv->getMachine(0);
@@ -31,32 +32,23 @@ bool GameLogic::calculateMission(int missionNumber)
 	missionEfficiency+= mission->getSEADAttackMod() * weapon->getSEADAttack();
 	if (missionEfficiency > missionDificulty) //misja udana
 	{
-		_cv->changePoints(mission->getPointsReward()); 
-		_cv->changeScoutPoints(mission->getScoutReward());
-		machine->changeHP(- mission->getMachineHPLossOnWin()); //odejmujemy HP 
-		//TO DO
-		//PRZEKAZANIE INFORMACJI DO INTERFEJSU
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		return MISSION_WON;
+	BusyManager* newBusy = new BusyCombatManager(_cv, NUMBER_OF_TURNS_IN_FIGHT, NO_CHANGE, -mission->getMachineHPLossOnWin(), 
+		mission->getPointsReward(), mission->getScoutReward(), MISSION_WON); //wartoœci do odjêcia przekazujemy jako ujemne
+		_busyManager->addBusy(newBusy);
 	}
 	else
 	{
-		_cv->changePoints(- mission->getPointsLoss());  //odejmujemy iloœæ punktów za przegran¹
-		_cv->changeScoutPoints(- mission->getScoutLoss()); 
-		machine->changeHP(- mission->getMachineHPLossOnLose());
-		_cv->changeHP(- mission->getCarrierHPLoss());
-		//TO DO
-		//PRZEKAZANIE INFORMACJI DO INTERFEJSU
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		return MISSION_LOST;
+	BusyManager* newBusy = new BusyCombatManager(_cv, NUMBER_OF_TURNS_IN_FIGHT, -mission->getCarrierHPLoss(), -mission->getMachineHPLossOnLose(),
+		-mission->getPointsLoss(), -mission->getScoutLoss(), MISSION_LOST);	//wartoœci do odjêcia przekazujemy jako ujemne
+		_busyManager->addBusy(newBusy);
 	}
 
 	
 }
 
 
-void GameLogic::createCV (int hp, int points, int scoutPoints)
+void GameLogic::createCV (int hp, int points, int scoutPoints, int repairPoints)
 {
 	delete _cv; //kasujemy poprzedni lotniskowiec jeœli istnieje
-	_cv = new AirCarrier(hp, points, scoutPoints); //i tworzymy nowy
+	_cv = new AirCarrier(hp, points, scoutPoints, repairPoints); //i tworzymy nowy
 }
