@@ -1,5 +1,5 @@
 Format pliku: numer_maszyny, numer_broni, status
 Kolejnoœæ zgodna z plikami weapons.txt, machines.txt, liczona od zera
 !
-1 1 A
 0 0 A
+1 1 A

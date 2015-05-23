@@ -1,7 +1,7 @@
 #include "Mission.h"
 
 
-Mission::Mission(string name, int missionDif, int soft, int hard, int naval, int asw, int sead, int view, int mobility, int aircraft, 
+Mission::Mission(string name, int missionDif, int soft, int hard, int air, int naval, int asw, int sead, int view, int mobility, int aircraft, 
 				 int heli, int pointsReward, int scoutReward, int machineHPLossOnWin, int pointsLoss, int scoutLoss, 
 				 int machineHPLossOnLose, int carrierHPLoss, string missionInfo, string missionWin, string missionLose)
 {
@@ -9,6 +9,7 @@ Mission::Mission(string name, int missionDif, int soft, int hard, int naval, int
 	_missionDifficulty = missionDif;
 	_softAttackMod = soft;
 	_hardAttackMod = hard;
+	_airAttackMod = air;
 	_navalAttackMod = naval;
 	_ASWAttackMod = asw;
 	_SEADAttackMod = sead;

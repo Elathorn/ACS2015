@@ -1,13 +1,17 @@
 #include "IOManager.h"
 
+const string IOManager::DATA_FILES_LOCATION = "data/";
 
-IOManager::IOManager(GameLogic* gameLogic)
+IOManager::IOManager(GameLogic* gameLogic, Campaign* campaign)
 {
 	_gameLogic = gameLogic;
-	loadWeapons("data/weapons.txt"); //wczytanie layoutów broni do systemu
-	loadMachines("data/machines.txt"); //wczytanie layoutów maszyn
-	loadMachinesOnCarrier("data/carrier_base_layout.txt");
-	loadMissions("data/missions.txt");
+	_campaign = campaign;
+	loadWeapons(DATA_FILES_LOCATION+"weapons.txt"); //wczytanie layoutów broni do systemu
+	loadMachines(DATA_FILES_LOCATION+"machines.txt"); //wczytanie layoutów maszyn
+	loadMissions(DATA_FILES_LOCATION+"missions.txt"); //wczytanie misji
+	loadCarrierStats(DATA_FILES_LOCATION+"carrier_stats.txt");  //stworzenie i ustawienie statystyk lotniskowca
+	loadMachinesOnCarrier(DATA_FILES_LOCATION+"carrier_layout.txt"); //wyposa¿enie lotniskowca w maszyny
+	loadCampaign(DATA_FILES_LOCATION+"campaign.txt");
 }
 
 
@@ -17,8 +21,8 @@ IOManager::~IOManager(void)
 
 void IOManager::jumpOverComment(ifstream& in)
 {
-	string temp;
-	getline(in, temp, CHAR_COMMENT_END);
+	string comment;
+	getline(in, comment, CHAR_COMMENT_END);
 }
 
 void IOManager::loadWeapons(string location)
@@ -26,12 +30,12 @@ void IOManager::loadWeapons(string location)
 	ifstream in (location.c_str()); 
 	jumpOverComment(in); //metoda pozwalaj¹ca przeskoczyæ ponad komentarz do pliku z danymi
 	string name; //zmienne tymczasowe do wczytywania danych z pliku
-	int soft, hard, naval, asw, sead, mov;
+	int soft, hard, air, naval, asw, sead, mov;
 	char av;
 	while (!in.eof()) //g³ówna pêtla metody
 	{
-		in >> name >> soft >> hard >> naval >> asw >> sead >> mov >> av; //wczytujemy dane
-		Weapon* weapon = new Weapon (name, soft, hard, naval, asw, sead, mov, av); //tworzymy layout
+		in >> name >> soft >> hard >> air >> naval >> asw >> sead >> mov >> av; //wczytujemy dane
+		Weapon* weapon = new Weapon (name, soft, hard, air, naval, asw, sead, mov, av); //tworzymy layout
 		_gameLogic->addWeapon(weapon); //i zapisujemy go w game logic
 	}
 }
@@ -73,17 +77,17 @@ void IOManager::loadMachinesOnCarrier (string location)
 void IOManager::loadMissions (string location)
 {
 	ifstream in(location.c_str());
-	jumpOverComment(in);
 	string name; 
-	int missionDif, soft, hard, naval, asw, sead, view, mobility, aircraft, heli, pointsReward, scoutReward, machineHPLossOnWin; 
+	int missionDif, soft, hard, air, naval, asw, sead, view, mobility, aircraft, heli, pointsReward, scoutReward, machineHPLossOnWin; 
 	int pointsLoss, scoutLoss, machineHPLossOnLose, carrierHPLoss; 
 	string missionInfo, missionWin, missionLose;
 	while(!in.eof())
 	{
+		jumpOverComment(in);
 		getline(in, name, CHAR_STRING_END);
 		name.erase(0,1); //usuwanie znaku pocz¹tku nowej linii
 		in >> missionDif;
-		in >> soft >> hard >> naval >> asw >> sead;
+		in >> soft >> hard >> air >> naval >> asw >> sead;
 		in >> view >> mobility >> aircraft >> heli;
 		in >> pointsReward >> scoutReward >> machineHPLossOnWin;
 		in >> pointsLoss >> scoutLoss >> machineHPLossOnLose >> carrierHPLoss;
@@ -93,8 +97,26 @@ void IOManager::loadMissions (string location)
 		missionWin.erase(0,1); //usuwanie znaku pocz¹tku nowej linii
 		getline(in, missionLose, CHAR_STRING_END);
 		missionLose.erase(0,1); //usuwanie znaku pocz¹tku nowej linii
-		Mission* mission = new Mission(name, missionDif, soft, hard, naval, asw, sead, view, mobility, aircraft, heli, pointsReward, 
+		Mission* mission = new Mission(name, missionDif, soft, hard, air, naval, asw, sead, view, mobility, aircraft, heli, pointsReward, 
 			scoutReward, machineHPLossOnWin, pointsLoss, scoutLoss, machineHPLossOnLose, carrierHPLoss, missionInfo, missionWin, missionLose);
 		_gameLogic->addMission(mission);
 	}
+}
+
+void IOManager::loadCarrierStats (string location)
+{
+	ifstream in(location.c_str());
+	jumpOverComment(in);
+	int hp, points, scoutPoints;
+	in >> hp >> points >> scoutPoints;
+	_gameLogic->createCV(hp, points, scoutPoints);
+}
+
+void IOManager::loadCampaign (string location)
+{
+	ifstream in(location.c_str());
+	jumpOverComment(in);
+	int countWon, countLost;
+	in >> countWon >> countLost;
+	_campaign->creatNewOperation(countWon, countLost);
 }

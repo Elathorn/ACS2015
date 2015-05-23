@@ -12,26 +12,31 @@ public:
 	GameLogic(void);
 	~GameLogic(void);
 
-	//MECHANIKA BRONI
+	//GETTERY i ADDERY
 	void addWeapon(Weapon* weapon){_WeaponsList.push_back(weapon);}
 	Weapon* getWeapon(int id) {return _WeaponsList[id];}
 
-	//MECHANIKA MASZYN
 	void addMachine(Machine* machine) {_MachinesList.push_back(machine);}
 	Machine* getMachine (int id) {return _MachinesList[id];}
 
-	//MECHANIKA LOTNISKOWCA
 	AirCarrier* getCV() {return _cv;}
 
-	//MECHANIKA MISJI
 	void addMission(Mission* mission) {_MissionsList.push_back(mission);}
 	Mission* getMission (int id) {return _MissionsList[id];}
+
+	//misje
+	bool calculateMission(int missionID);
+
+	//
+	void createCV(int, int, int);
 protected:
 	vector<Weapon*> _WeaponsList;
 	vector<Machine*> _MachinesList;
 	vector<Mission*> _MissionsList;
 	AirCarrier* _cv;
 
-protected:
+protected: //magic words
+	static const bool MISSION_WON = true;
+	static const bool MISSION_LOST = false;
 };
 

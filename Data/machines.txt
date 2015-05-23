@@ -1,4 +1,4 @@
 Format pliku: nazwa, hp <0;100>, typ ([A]ircraft, [H]elicopter), broñ (-1 dla ¿adnej, reszta zgodnie z kolejnoœci¹ w weapon.txt, od 0), mobilnoœæ, zwiad/wzrok, dostêpnoœæ ((A)vailable, (B)usy, (D)estroyed, (L)ayout)
 !
-F-16 40 A 0 10 10 L
+F-16 100 A 0 10 10 L
 F-15 60 A 1 8 8 L

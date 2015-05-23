@@ -42,5 +42,12 @@ protected:	//"MAGIC NUMBERS"
 	static const char DESTROYED='D';
 	static const char LAYOUT='L';
 
+	static const int MAX_HP = 100;
+	static const int MIN_HP = 0;
+	static const int EFFICENT_THRESHOLD = 80;
+	static const int DAMAGED_THRESHOLD = 60;
+	static const int HEAVY_DAMAGED_THRESHOLD = 40;
+
+
 };
 

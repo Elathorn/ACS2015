@@ -2,6 +2,7 @@
 #include "Machine.h"
 #include "GameLogic.h"
 #include "IOManager.h"
+#include "Operation.h"
 #include <clocale>
 
 //temp
@@ -14,18 +15,20 @@ int main()
 	setlocale(LC_ALL, "");
 	//Tworzenie podstawowych klas
 	GameLogic* gameLogic = new GameLogic();
-	IOManager* ioManager = new IOManager(gameLogic);
+	Campaign* campaign = new Campaign(gameLogic);
+	IOManager* ioManager = new IOManager(gameLogic, campaign);
 	
-	for (int i=0; i<2; i++)
-		{
-	cout << gameLogic->getMission(i)->getName() << endl;
-	cout << gameLogic->getMission(i)->getMissionInfo() << endl;
-	cout << gameLogic->getMission(i)->getMissionWin() << endl;
-	cout << gameLogic->getMission(i)->getMissionLose() << endl;
-		}
-
-
-
-	
+	cout << campaign->getOperation()->getMissionWonCount() << " "<< campaign->getOperation()->getMissionLostCount() <<  endl;
+	cout << gameLogic->getCV()->getHP() << " " << gameLogic->getCV()->getPoints() << " " << gameLogic->getCV()->getScoutPoints() << endl;
+	cout << gameLogic->getCV()->getMachine(0)->getHP() << endl;
+	campaign->getOperation()->startMission(0);
+	gameLogic->getCV()->getMachine(0)->setWeapon(gameLogic->getWeapon(1));
+	cout << campaign->getOperation()->getMissionWonCount() << " "<< campaign->getOperation()->getMissionLostCount() <<  endl;
+	cout << gameLogic->getCV()->getHP() << " " << gameLogic->getCV()->getPoints() << " " << gameLogic->getCV()->getScoutPoints() << endl;
+	cout << gameLogic->getCV()->getMachine(0)->getHP() << endl;
+	campaign->getOperation()->startMission(0);
+	cout << campaign->getOperation()->getMissionWonCount() << " "<< campaign->getOperation()->getMissionLostCount() <<  endl;
+	cout << gameLogic->getCV()->getHP() << " " << gameLogic->getCV()->getPoints() << " " << gameLogic->getCV()->getScoutPoints() << endl;
+	cout << gameLogic->getCV()->getMachine(0)->getHP() << endl;
 	getchar();
 }

@@ -4,17 +4,21 @@ using namespace std;
 class Mission
 {
 public:
-	Mission(string, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, string, string, string);
+	Mission(string, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, string, string, string);
 	~Mission(void);
 
 	//GETery
 	string getName() {return _name;}
+
 	int getMissionDifficulty() {return _missionDifficulty;}
+
 	int getSoftAttackMod() {return _softAttackMod;}
 	int getHardAttackMod() {return _hardAttackMod;}
+	int getAirAttackMod() {return _airAttackMod;}
 	int getNavalAttackMod() {return _navalAttackMod;}
 	int getASWAttackMod() {return _ASWAttackMod;}
 	int getSEADAttackMod() {return _SEADAttackMod;}
+
 	int getViewMod() {return _viewMod;}
 	int getMobilityMod() {return _mobilityMod;}
 	int getAircraftMod() {return _aircraftMod;}
@@ -37,6 +41,7 @@ protected:
 	int _missionDifficulty; //poziom trudnoœci misji
 	//Modyfikatory do trudnoœci wykonania misji
 	int _softAttackMod; //modyfikator za soft attack
+	int _airAttackMod;
 	int _hardAttackMod;
 	int _navalAttackMod;
 	int _ASWAttackMod;
