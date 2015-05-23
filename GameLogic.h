@@ -4,6 +4,7 @@
 #include "Machine.h"
 #include "AirCarrier.h"
 #include "Mission.h"
+#include <stdlib.h>  
 using namespace std;
 
 class GameLogic //G³ówna klasa gry, odpowiedzialna za wszystko co siê dzieje w niej oraz za komunikacjê gra-pliki, gra-interfejs
@@ -23,6 +24,7 @@ public:
 
 	void addMission(Mission* mission) {_MissionsList.push_back(mission);}
 	Mission* getMission (int id) {return _MissionsList[id];}
+	int getNumberOfMissionTypes() {return _MissionsList.size();}
 
 	//misje
 	bool calculateMission(int missionID);

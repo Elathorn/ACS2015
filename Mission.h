@@ -8,7 +8,7 @@ public:
 	~Mission(void);
 
 	//GETery
-	string getName() {return _name;}
+	string getMissionName() {return _name;}
 
 	int getMissionDifficulty() {return _missionDifficulty;}
 
