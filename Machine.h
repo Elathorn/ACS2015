@@ -27,7 +27,7 @@ public:
 	void changeHP (int amount);
 protected:
 	string _name;  //nazwa pojazdu
-	short int _hp; //liczba HP (0-100)
+	int _hp; //liczba HP (0-100)
 	char _type; // (H)eli, (A)ircraft
 	Weapon* _weapon; //wskaŸnik do aktualnie wybranej broni 
 	int _mobility; //"mobilnoœæ" pojazdu, czyli zdolnoœæ do unikniêcia ataku

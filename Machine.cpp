@@ -31,7 +31,11 @@ void Machine::changeHP (int amount)
 {
 	_hp+=amount;
 	if (_hp<MIN_HP) //HP jest w granicach 0-100, zabezpieczenie przed wyjœciem poza zakres
+	{
 		_hp=MIN_HP;
+		this->setStatus(DESTROYED); //maszyna ma 0 hp, ustawiamy status jako zniszczona
+	}
+
 	if (_hp>MAX_HP)
 		_hp=MAX_HP;
 }

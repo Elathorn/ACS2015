@@ -32,10 +32,16 @@ public:
 
 	//
 	void createCV(int, int, int, int);
+
+
+	void setMachine(Machine* machine) {_machine=machine;}
 protected:
 	vector<Weapon*> _WeaponsList;
 	vector<Machine*> _MachinesList;
 	vector<Mission*> _MissionsList;
+	
+	Machine* _machine;
+
 	AirCarrier* _cv;
 	BusyManager* _busyManager;
 

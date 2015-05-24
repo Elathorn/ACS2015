@@ -17,21 +17,24 @@ BusyManager::~BusyManager(void)
 
 void BusyManager::busyEndTurnCheck()
 {
-	for (list<BusyManager*>::const_iterator iterator = _busyManagers.begin(); iterator != _busyManagers.end(); ++iterator)
+	for (list<BusyManager*>::const_iterator iterator = _busyManagers.begin(); iterator != _busyManagers.end();)
 	{
 		BusyManager* actualBusy = *iterator;
 		if (!--actualBusy->_turns) //jeœli skoñczy³ siê okres w którym maszyna jest zajêta
 		{
 			actualBusy->busyEnd(); //wywo³ujemy funkcje odpowiadaj¹c¹ za koniec busy
-			delete *iterator; //kasujemy wskaŸnik
-			_busyManagers.erase(iterator); //i wyrzucamy go z listy
+			delete *iterator;
+			iterator = _busyManagers.erase(iterator);
 		}
+		else
+			++iterator;
 	}
 }
 
-BusyCombatManager::BusyCombatManager(AirCarrier* cv, int turns, int carrierHPChange, int machineHPChange, int pointsChange, 
+BusyCombatManager::BusyCombatManager(Machine* machine, AirCarrier* cv, int turns, int carrierHPChange, int machineHPChange, int pointsChange, 
 									 int scoutPointsChange, bool victory)
 {
+	_machine=machine;
 	_cv=cv;
 	_turns=turns;
 	_carrierHPChange=carrierHPChange;
@@ -39,6 +42,7 @@ BusyCombatManager::BusyCombatManager(AirCarrier* cv, int turns, int carrierHPCha
 	_pointsChange=pointsChange;
 	_scoutPointsChange=scoutPointsChange;
 	_victory=victory;
+	_machine->setStatus(BUSY); //ustawiamy status maszyny na busy
 }
 
 void BusyCombatManager::busyEnd()

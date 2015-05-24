@@ -32,7 +32,7 @@ protected: //magic here, as always
 class BusyCombatManager: public BusyManager
 {
 public:
-	BusyCombatManager(AirCarrier*, int, int, int, int, int, bool);
+	BusyCombatManager(Machine*, AirCarrier*, int, int, int, int, int, bool);
 
 	void busyEnd();
 protected:
