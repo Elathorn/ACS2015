@@ -40,18 +40,18 @@ void Machine::changeHP (int amount)
 		_hp=MAX_HP;
 }
 
-string Machine::getHPStatus() //zwraca opisowy status maszyny
+sf::String Machine::getHPStatus() //zwraca opisowy status maszyny
 {
 	if (_hp==MAX_HP)
-		return "Nienaruszony";
+		return L"Nienaruszony";
 	if (_hp >= EFFICENT_THRESHOLD)
-		return "Sprawny";
+		return L"Sprawny";
 	if (_hp >= DAMAGED_THRESHOLD)
-		return "Uszkodzony";
+		return L"Uszkodzony";
 	if (_hp >= HEAVY_DAMAGED_THRESHOLD)
-		return "Ciê¿ko uszkodzony";
+		return L"Ciê¿ko uszkodzony";
 	if (_hp > MIN_HP)
-		return "Niesprawny";
+		return L"Niesprawny";
 	if (!_hp)
-		return "Zniszczony";
+		return L"Zniszczony";
 }

@@ -6,7 +6,6 @@
 using namespace std;
 
 
-
 class BusyManager
 {
 public:
@@ -48,7 +47,7 @@ protected:
 class BusyRearmManager: public BusyManager
 {
 public:
-	BusyRearmManager(Weapon*, int);
+	BusyRearmManager(Machine*, Weapon*, int);
 	void busyEnd();
 protected:
 	Weapon* _weapon;

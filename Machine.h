@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Weapon.h"
+#include <SFML\System\String.hpp>
 using namespace std;
 
 class Machine
@@ -14,7 +15,7 @@ public:
 	//GETery
 	string getName() {return _name;}
 	int getHP() {return _hp;}
-	string getHPStatus(); //zwraca opisowy status maszyny
+	sf::String getHPStatus(); //zwraca opisowy status maszyny
 	char getType() {return _type;}
 	Weapon* getWeapon() {return _weapon;}
 	int getMobility() {return _mobility;}

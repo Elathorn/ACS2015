@@ -59,8 +59,9 @@ void BusyCombatManager::busyEnd()
 	//przekazanie informacji do operations o wygranej/przegranej
 }
 
-BusyRearmManager::BusyRearmManager(Weapon* weapon, int turns)
+BusyRearmManager::BusyRearmManager(Machine* machine, Weapon* weapon, int turns)
 {
+	_machine = machine;
 	_weapon=weapon;
 	_turns=turns;
 }

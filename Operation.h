@@ -17,6 +17,7 @@ public:
 	//g³ówne metody
 	void startMission(int);
 	void scout();
+	void proceedTurn();
 
 protected:
 	GameLogic* _gameLogic;

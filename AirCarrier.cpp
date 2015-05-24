@@ -40,3 +40,20 @@ void AirCarrier::changeScoutPoints (int amount)
 	if (_scoutPoints < 0)
 		_scoutPoints = 0;
 }
+
+
+sf::String AirCarrier::getHPStatus() //zwraca opisowy status maszyny
+{
+	if (_hp==MAX_HP)
+		return L"Nienaruszony";
+	if (_hp >= EFFICENT_THRESHOLD)
+		return L"Sprawny";
+	if (_hp >= DAMAGED_THRESHOLD)
+		return L"Uszkodzony";
+	if (_hp >= HEAVY_DAMAGED_THRESHOLD)
+		return L"Ciê¿ko uszkodzony";
+	if (_hp > MIN_HP)
+		return L"Niesprawny";
+	if (!_hp)
+		return L"Zniszczony";
+}
