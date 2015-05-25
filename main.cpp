@@ -6,6 +6,7 @@
 #include "GraphicManager.h"
 #include <time.h>  
 #include <clocale>
+#include "GraphicEngine.h"
 
 //temp
 #include <iostream>
@@ -16,13 +17,13 @@ int main()
 {
 	srand(time(NULL));
 	setlocale(LC_ALL, "");
-	///////////////////////////
-	///////////////////////////
-	//Tworzenie podstawowych klas
+	/////////////////////////////////
+	//Tworzenie podstawowych klas///
+	///////////////////////////////
 	GameLogic* gameLogic = new GameLogic();
 	Campaign* campaign = new Campaign(gameLogic);
 	IOManager* ioManager = new IOManager(gameLogic, campaign);
-	GraphicManager* graphicManager = new GraphicManager(gameLogic, campaign, ioManager);
+	GraphicEngine* graphicEngine = new GraphicEngine(gameLogic, campaign, ioManager);
 
 	////////////////////////////////////////////
 	

@@ -1,8 +1,12 @@
 #include "GraphicMenuManager.h"
 
 
-GraphicMenuManager::GraphicMenuManager()
+GraphicMenuManager::GraphicMenuManager(RenderWindow& window, GameLogic* gameLogic, Campaign* campaign, IOManager* ioManager) : _mainWindow(window)
 {
+	_font.loadFromFile(FONTS_LOCATION+"arial.ttf");
+	_gameLogic=gameLogic;
+	_campaign=campaign;
+	_ioManager=ioManager;
 }
 
 
@@ -32,7 +36,7 @@ void GraphicMenuManager::runMenu()
 
 
 
-	for (int i=0; i<AMOUNT_OF_MENUS; i++)
+	for(int i=0; i<AMOUNT_OF_MENUS; i++)
 	{
 		menus[i].setFont(_font);
 		menus[i].setCharacterSize(MENU_TEXT_SIZE);
@@ -43,9 +47,9 @@ void GraphicMenuManager::runMenu()
 
 	while (_gameState==GAME_MENU) 
 	{
-		Vector2f mouse(Mouse::getPosition(*_mainWindow));
+		Vector2f mouse(Mouse::getPosition(_mainWindow));
 		Event event;
-		while (_mainWindow->pollEvent(event)) //EVENT HANDLER
+		while (_mainWindow.pollEvent(event)) //EVENT HANDLER
 		{
 			if (event.type == Event::MouseButtonReleased && event.key.code == Mouse::Left && 
 				menus[MENU_NEW_GAME].getGlobalBounds().contains(mouse))
@@ -78,14 +82,14 @@ void GraphicMenuManager::runMenu()
 					menus[i].setStyle(Text::Regular);
 				}
 
-		_mainWindow->clear();
+		_mainWindow.clear();
 		//RYSOWANIE
-		_mainWindow->draw(backgrondSprite); //t³o
-		_mainWindow->draw(title); //tytu³
+		_mainWindow.draw(backgrondSprite); //t³o
+		_mainWindow.draw(title); //tytu³
 		for (int i=0; i<AMOUNT_OF_MENUS; i++) //menusy
 		{
-			_mainWindow->draw(menus[i]);
+			_mainWindow.draw(menus[i]);
 		}
-		_mainWindow->display();
+		_mainWindow.display();
 	}
 }

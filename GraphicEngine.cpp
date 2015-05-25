@@ -6,7 +6,7 @@ GraphicEngine::GraphicEngine(GameLogic* gameLogic, Campaign* campaign, IOManager
 	_gameLogic=gameLogic;
 	_campaign=campaign;
 	_ioManager=ioManager;
-	_graphicManager = new GraphicManager(gameLogic, campaign, ioManager);//tworzymy GraphicManager (który tworzy okno gry)
+	GraphicManager::setGameState(GraphicManager::GAME_MENU);
 	runGraphic(); //odpalamy grafike
 }
 
@@ -19,8 +19,9 @@ GraphicEngine::~GraphicEngine(void)
 
 void GraphicEngine::runGraphic()
 {
-	GraphicGameManager* gameManager = new GraphicGameManager();
-	GraphicMenuManager* menuManager = new GraphicMenuManager();
+	_mainWindow = new RenderWindow(VideoMode(GraphicManager::RES_X,GraphicManager::RES_Y),"Aircraft Carrier Simulator 2015!",Style::Titlebar | Style::Close);
+	GraphicGameManager* gameManager = new GraphicGameManager(*_mainWindow, _gameLogic, _campaign, _ioManager);
+	GraphicMenuManager* menuManager = new GraphicMenuManager(*_mainWindow, _gameLogic, _campaign, _ioManager);
 
 	while (_graphicManager->getGameState()!=GraphicManager::GAME_END)
 	{
@@ -31,7 +32,8 @@ void GraphicEngine::runGraphic()
 			case GraphicManager::GAME_SP:
 				gameManager->runGame();
 			case GraphicManager::GAME_END:
-				delete _graphicManager; return;
+				return;
 		}
 	}
+	_mainWindow->close();
 }
