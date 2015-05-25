@@ -86,7 +86,10 @@
     <ClCompile Include="BusyManager.cpp" />
     <ClCompile Include="Campaign.cpp" />
     <ClCompile Include="GameLogic.cpp" />
+    <ClCompile Include="GraphicEngine.cpp" />
+    <ClCompile Include="GraphicGameManager.cpp" />
     <ClCompile Include="GraphicManager.cpp" />
+    <ClCompile Include="GraphicMenuManager.cpp" />
     <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="Machine.cpp" />
     <ClCompile Include="main.cpp" />
@@ -99,7 +102,10 @@
     <ClInclude Include="BusyManager.h" />
     <ClInclude Include="Campaign.h" />
     <ClInclude Include="GameLogic.h" />
+    <ClInclude Include="GraphicEngine.h" />
+    <ClInclude Include="GraphicGameManager.h" />
     <ClInclude Include="GraphicManager.h" />
+    <ClInclude Include="GraphicMenuManager.h" />
     <ClInclude Include="IOManager.h" />
     <ClInclude Include="Machine.h" />
     <ClInclude Include="Mission.h" />
