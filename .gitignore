@@ -1,5 +1,5 @@
 # Debug folder from VS2012
-ASC/Debug/*
+[Dd]ebug/
 
 # Windows image file caches
 Thumbs.db
