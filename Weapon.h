@@ -1,13 +1,13 @@
 #pragma once
-#include <string>
-using namespace std;
+#include <SFML\Graphics.hpp>
+using namespace sf;
 class Weapon
 {
 public:
-	Weapon(string, int, int, int, int, int, int, int, char);
+	Weapon(String, int, int, int, int, int, int, int, char);
 	~Weapon(void);
 	//GETtery
-	string getName() {return _name;}
+	String getName() {return _name;}
 	int getSoftAttack() {return _softAttack;}
 	int getHardAttack() {return _hardAttack;}
 	int getAirAttack() {return _airAttack;}
@@ -18,7 +18,7 @@ public:
 	char getAvailability() {return _availability;}
 
 protected:
-	string _name;
+	String _name;
 	int _softAttack; //atak przeciwpiechocie 
 	int _hardAttack; //atak przeciwpancerny
 	int _airAttack; //atak plot

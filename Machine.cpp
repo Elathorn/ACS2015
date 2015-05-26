@@ -1,7 +1,7 @@
 #include "Machine.h"
 
 
-Machine::Machine(string name, short int hp, char type, Weapon* weapon,  int mobility, int view, char status)
+Machine::Machine(String name, short int hp, char type, Weapon* weapon,  int mobility, int view, char status)
 {
 	_name=name;
 	_hp=hp;

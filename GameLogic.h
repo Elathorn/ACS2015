@@ -7,6 +7,7 @@
 #include "BusyManager.h"
 #include <stdlib.h>  
 using namespace std;
+using namespace sf;
 
 class GameLogic //G³ówna klasa gry, odpowiedzialna za wszystko co siê dzieje w niej oraz za komunikacjê gra-pliki, gra-interfejs
 {
@@ -24,11 +25,12 @@ public:
 	AirCarrier* getCV() {return _cv;}
 
 	void addMission(Mission* mission) {_MissionsList.push_back(mission);}
-	Mission* getMission (int id) {return _MissionsList[id];}
+	Mission* getMission (int id);
 	int getNumberOfMissionTypes() {return _MissionsList.size();}
 
 	//misje
 	void calculateMission(int missionID);
+	String getMissionName(int id);
 
 	//
 	void createCV(int, int, int, int);

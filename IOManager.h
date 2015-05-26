@@ -2,10 +2,10 @@
 #include "GameLogic.h"
 #include "Mission.h"
 #include "Campaign.h"
-#include <string>
 #include <fstream>
 using namespace std;
-
+#include <SFML\System\String.hpp>
+using namespace sf;
 
 class IOManager // INPUT/OUTPUT manager
 {

@@ -23,10 +23,11 @@ int main()
 	GameLogic* gameLogic = new GameLogic();
 	Campaign* campaign = new Campaign(gameLogic);
 	IOManager* ioManager = new IOManager(gameLogic, campaign);
-	GraphicEngine* graphicEngine = new GraphicEngine(gameLogic, campaign, ioManager);
+	////////////////////////////////////////////
 
 	////////////////////////////////////////////
-	
+	GraphicEngine* graphicEngine = new GraphicEngine(gameLogic, campaign, ioManager);
+
     return 0;
 	getchar();
 }

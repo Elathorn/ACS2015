@@ -2,18 +2,18 @@
 #include <string>
 #include "Weapon.h"
 #include <SFML\System\String.hpp>
-using namespace std;
+using namespace sf;
 
 class Machine
 {
 public:
 	//Konstruktor i destruktor
-	Machine(string name, short int hp, char type, Weapon* weapon, int _mobility, int _view, char _status); //konstruktor do wczytywania
+	Machine(String name, short int hp, char type, Weapon* weapon, int _mobility, int _view, char _status); //konstruktor do wczytywania
 	//z plików, zarówno layoutów maszyn jak i (przysz³oœciowo) z save
 	Machine(Machine& layout, char status); //konstruktor w³asciwy dla dodawania nowych maszyn dla gracza
 	~Machine(void);
 	//GETery
-	string getName() {return _name;}
+	String getName() {return _name;}
 	int getHP() {return _hp;}
 	sf::String getHPStatus(); //zwraca opisowy status maszyny
 	char getType() {return _type;}
@@ -27,7 +27,7 @@ public:
 	//inne
 	void changeHP (int amount);
 protected:
-	string _name;  //nazwa pojazdu
+	String _name;  //nazwa pojazdu
 	int _hp; //liczba HP (0-100)
 	char _type; // (H)eli, (A)ircraft
 	Weapon* _weapon; //wskaŸnik do aktualnie wybranej broni 

@@ -16,6 +16,7 @@ public:
 
 	//g³ówne metody
 	void startMission(int);
+	void startMission() {startMission(_nextMission);}
 	void scout();
 	void proceedTurn();
 
@@ -28,9 +29,10 @@ protected:
 	int _lastScoutedMission; //ostatnia odkryta misja
 
 
-protected: //magic numbers
+public: //magic numbers
 	static const int MISSIONS_IN_OPERATION = 15; //iloœæ misji w operacji
 	static const int NO_MISSION = -1; //brak misji, czas wolny
+protected:
 	static const int NO_MISSION_CHANCE = 33; //%
 	int NUMBER_OF_MISSION_TYPES; //iloœæ ró¿nych misji
 	static const int BASE_SCOUT_CHANCE = 100; 

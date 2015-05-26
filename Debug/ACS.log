@@ -1,29 +1,30 @@
-﻿Build started 2015-05-25 20:38:15.
+﻿Build started 2015-05-27 00:19:08.
      1>Project "D:\Microsoft Visual Studio\Projects\ACS\ACS\ACS.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Microsoft Visual Studio\VC\bin\CL.exe /c /I"D:\SFML-2.2\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GraphicEngine.cpp GraphicGameManager.cpp GraphicManager.cpp GraphicMenuManager.cpp main.cpp
-         GraphicMenuManager.cpp
-     1>d:\microsoft visual studio\projects\acs\acs\graphicmenumanager.cpp(5): error C2758: 'GraphicMenuManager::_mainWindow' : must be initialized in constructor base/member initializer list
-                 d:\microsoft visual studio\projects\acs\acs\graphicmenumanager.h(11) : see declaration of 'GraphicMenuManager::_mainWindow'
-     1>d:\microsoft visual studio\projects\acs\acs\graphicmenumanager.cpp(40): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>d:\microsoft visual studio\projects\acs\acs\graphicmenumanager.cpp(46): error C2100: illegal indirection
-     1>d:\microsoft visual studio\projects\acs\acs\graphicmenumanager.cpp(48): error C2819: type 'sf::RenderWindow' does not have an overloaded member 'operator ->'
-                 d:\sfml-2.2\include\sfml\graphics\renderwindow.hpp(44) : see declaration of 'sf::RenderWindow'
-                 did you intend to use '.' instead?
-     1>d:\microsoft visual studio\projects\acs\acs\graphicmenumanager.cpp(48): error C2232: '->sf::Window::pollEvent' : left operand has 'class' type, use '.'
-     1>d:\microsoft visual studio\projects\acs\acs\graphicmenumanager.cpp(48): fatal error C1903: unable to recover from previous error(s); stopping compilation
-         GraphicEngine.cpp
-         Generating Code...
-         Compiling...
-         main.cpp
-     1>d:\microsoft visual studio\projects\acs\acs\main.cpp(17): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-         GraphicManager.cpp
+         D:\Microsoft Visual Studio\VC\bin\CL.exe /c /I"D:\SFML-2.2\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GraphicGameManager.cpp
          GraphicGameManager.cpp
-     1>d:\microsoft visual studio\projects\acs\acs\graphicgamemanager.cpp(35): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
-     1>d:\microsoft visual studio\projects\acs\acs\graphicgamemanager.cpp(36): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-         Generating Code...
-     1>Done Building Project "D:\Microsoft Visual Studio\Projects\ACS\ACS\ACS.vcxproj" (Build target(s)) -- FAILED.
+     1>d:\microsoft visual studio\projects\acs\acs\graphicgamemanager.cpp(31): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>d:\microsoft visual studio\projects\acs\acs\graphicgamemanager.cpp(32): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\microsoft visual studio\projects\acs\acs\graphicgamemanager.cpp(71): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>d:\microsoft visual studio\projects\acs\acs\graphicgamemanager.cpp(72): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+       Link:
+         D:\Microsoft Visual Studio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Microsoft Visual Studio\Projects\ACS\Debug\ACS.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\SFML-2.2\lib" "sfml-system-d.lib" "sfml-audio-d.lib" "sfml-graphics-d.lib" "sfml-window-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Microsoft Visual Studio\Projects\ACS\Debug\ACS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Microsoft Visual Studio\Projects\ACS\Debug\ACS.lib" /MACHINE:X86 Debug\AirCarrier.obj
+         Debug\BusyManager.obj
+         Debug\Campaign.obj
+         Debug\GameLogic.obj
+         Debug\GraphicEngine.obj
+         Debug\GraphicGameManager.obj
+         Debug\GraphicManager.obj
+         Debug\GraphicMenuManager.obj
+         Debug\IOManager.obj
+         Debug\Machine.obj
+         Debug\main.obj
+         Debug\Mission.obj
+         Debug\Operation.obj
+         Debug\Weapon.obj
+         ACS.vcxproj -> D:\Microsoft Visual Studio\Projects\ACS\Debug\ACS.exe
+     1>Done Building Project "D:\Microsoft Visual Studio\Projects\ACS\ACS\ACS.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:02.65
+Time Elapsed 00:00:00.93

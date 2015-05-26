@@ -1,3 +1,3 @@
-HP (0-100), punkty, punkty zwiadu
+HP (0-100), punkty, punkty zwiadu, punkty naprawy
 !
-100 10 10 20
+100 10 10000 20

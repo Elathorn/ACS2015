@@ -8,7 +8,8 @@ Operation::Operation(GameLogic* gameLogic, int missionWonCount, int missionLostC
 	_missionLostCount = missionLostCount;
 	NUMBER_OF_MISSION_TYPES = gameLogic->getNumberOfMissionTypes();
 	_nextMission = 0; 
-
+	_lastScoutedMission = 0;
+	srand(time(NULL));
 	//generowanie operacji
 	for (int i=0; i<MISSIONS_IN_OPERATION; i++)
 	{

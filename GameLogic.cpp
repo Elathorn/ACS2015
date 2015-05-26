@@ -52,3 +52,11 @@ void GameLogic::createCV (int hp, int points, int scoutPoints, int repairPoints)
 	delete _cv; //kasujemy poprzedni lotniskowiec jeœli istnieje
 	_cv = new AirCarrier(hp, points, scoutPoints, repairPoints); //i tworzymy nowy
 }
+
+String GameLogic::getMissionName (int id)
+{
+	if (id==-1)
+		return L"Czas Wolny";
+	else
+		return _MissionsList[id]->getMissionName();
+}

@@ -1,5 +1,5 @@
 !
-*Misja testowa.*
+*Misja testow¹¹¹¹.*
 6
 1 0 0 0 0 0
 0 0 0 0
@@ -11,7 +11,7 @@ ka trudna
 *Wygra³eœ, najs!*
 *Przegra³eœ, lama!*
 
-*Druga misja testowa, huh?*
+*Druga misja testowa, huh?¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹*
 1
 1 2 3 4 5 6
 1 2 3 4

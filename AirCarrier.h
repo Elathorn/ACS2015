@@ -1,6 +1,8 @@
 #pragma once
 #include "Machine.h"
 #include <vector>
+using namespace std;
+using namespace sf;
 
 class AirCarrier
 {

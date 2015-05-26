@@ -1,14 +1,14 @@
 #pragma once
-#include <string>
-using namespace std;
+#include <SFML\Graphics.hpp>
+using namespace sf;
 class Mission
 {
 public:
-	Mission(string, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, string, string, string);
+	Mission(String, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, String, String, String);
 	~Mission(void);
 
 	//GETery
-	string getMissionName() {return _name;}
+	String getMissionName() {return _name;}
 
 	int getMissionDifficulty() {return _missionDifficulty;}
 
@@ -33,11 +33,11 @@ public:
 	int getMachineHPLossOnLose() {return _machineHPLossOnLose;}
 	int getCarrierHPLoss() {return _carrierHPLoss;} 
 
-	string getMissionInfo() {return _missionInfo;}
-	string getMissionWin() {return _missionWin;}
-	string getMissionLose() {return _missionLose;}
+	String getMissionInfo() {return _missionInfo;}
+	String getMissionWin() {return _missionWin;}
+	String getMissionLose() {return _missionLose;}
 protected:
-	string _name; //nazwa misji
+	String _name; //nazwa misji
 	int _missionDifficulty; //poziom trudnoœci misji
 	//Modyfikatory do trudnoœci wykonania misji
 	int _softAttackMod; //modyfikator za soft attack
@@ -60,9 +60,9 @@ protected:
 	int _machineHPLossOnLose; 
 	int _carrierHPLoss; //strata HP na lotniskowcu
 	//Teksty
-	string _missionInfo; //informacja o misji
-	string _missionWin; //informacja po wygranej
-	string _missionLose; //informacja po przegranej
+	String _missionInfo; //informacja o misji
+	String _missionWin; //informacja po wygranej
+	String _missionLose; //informacja po przegranej
 
 protected: //MAGIC WORDS
 };

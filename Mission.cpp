@@ -1,9 +1,9 @@
 #include "Mission.h"
 
 
-Mission::Mission(string name, int missionDif, int soft, int hard, int air, int naval, int asw, int sead, int view, int mobility, int aircraft, 
+Mission::Mission (String name, int missionDif, int soft, int hard, int air, int naval, int asw, int sead, int view, int mobility, int aircraft, 
 				 int heli, int pointsReward, int scoutReward, int machineHPLossOnWin, int pointsLoss, int scoutLoss, 
-				 int machineHPLossOnLose, int carrierHPLoss, string missionInfo, string missionWin, string missionLose)
+				 int machineHPLossOnLose, int carrierHPLoss, String missionInfo, String missionWin, String missionLose)
 {
 	_name=name;
 	_missionDifficulty = missionDif;
