@@ -75,4 +75,5 @@ void Operation::proceedTurn()
 {
 	startMission(_nextMission); //startujemy misje, nextMission roœnie o jeden
 	scout(); //przeprowadzamy zwiad
+	_gameLogic->getBusyManager()->busyEndTurnCheck(); //zajmujemy siê "zajêtymi" samolotami
 }

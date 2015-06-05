@@ -88,6 +88,7 @@
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="GraphicEngine.cpp" />
     <ClCompile Include="GraphicGameManager.cpp" />
+    <ClCompile Include="GraphicMachinesManager.cpp" />
     <ClCompile Include="GraphicManager.cpp" />
     <ClCompile Include="GraphicMenuManager.cpp" />
     <ClCompile Include="IOManager.cpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="GraphicEngine.h" />
     <ClInclude Include="GraphicGameManager.h" />
+    <ClInclude Include="GraphicMachinesManager.h" />
     <ClInclude Include="GraphicManager.h" />
     <ClInclude Include="GraphicMenuManager.h" />
     <ClInclude Include="IOManager.h" />

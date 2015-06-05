@@ -24,7 +24,8 @@ int main()
 	Campaign* campaign = new Campaign(gameLogic);
 	IOManager* ioManager = new IOManager(gameLogic, campaign);
 	////////////////////////////////////////////
-
+	cout << gameLogic->getCV()->getAmountOfMachines() << endl;
+	cout << gameLogic->getCV()->getMachine(0)->getName();
 	////////////////////////////////////////////
 	GraphicEngine* graphicEngine = new GraphicEngine(gameLogic, campaign, ioManager);
 

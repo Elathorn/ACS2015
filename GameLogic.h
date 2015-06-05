@@ -23,9 +23,10 @@ public:
 	Machine* getMachine (int id) {return _MachinesList[id];}
 
 	AirCarrier* getCV() {return _cv;}
+	BusyManager* getBusyManager() {return _busyManager;}
 
 	void addMission(Mission* mission) {_MissionsList.push_back(mission);}
-	Mission* getMission (int id);
+	Mission* getMission (int id) {return _MissionsList[id];}
 	int getNumberOfMissionTypes() {return _MissionsList.size();}
 
 	//misje
@@ -37,12 +38,13 @@ public:
 
 
 	void setMachine(Machine* machine) {_machine=machine;}
+	Machine* getActualMachine() {return _machine;}
 protected:
 	vector<Weapon*> _WeaponsList;
 	vector<Machine*> _MachinesList;
 	vector<Mission*> _MissionsList;
 	
-	Machine* _machine;
+	Machine* _machine; //maszyna która wyleci na nastêpn¹ misje
 
 	AirCarrier* _cv;
 	BusyManager* _busyManager;

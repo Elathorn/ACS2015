@@ -4,6 +4,7 @@
 GameLogic::GameLogic(void)
 {
 	_cv = NULL;
+	_machine = NULL;
 	_busyManager = new BusyManager();
 }
 
@@ -16,12 +17,11 @@ GameLogic::~GameLogic(void)
 void GameLogic::calculateMission(int missionNumber)
 {
 	//TO DO
-	Machine* machine = _machine;
 	//METODA DO WYBIERANIA SAMOLOTU
 	//
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	Mission* mission = _MissionsList[missionNumber];
-	Weapon* weapon = machine->getWeapon();
+	Weapon* weapon = _machine->getWeapon();
 	int missionDificulty = mission->getMissionDifficulty();
 	int missionEfficiency=0; //skutecznoœæ na misji, od niej zale¿y, czy siê uda czy nie 
 	missionEfficiency = mission->getSoftAttackMod() * weapon->getSoftAttack();
@@ -30,19 +30,25 @@ void GameLogic::calculateMission(int missionNumber)
 	missionEfficiency+= mission->getNavalAttackMod() * weapon->getNavalAttack();
 	missionEfficiency+= mission->getASWAttackMod() * weapon->getASWAttack();
 	missionEfficiency+= mission->getSEADAttackMod() * weapon->getSEADAttack();
+	missionEfficiency+= mission->getMobilityMod() * (_machine->getMobility()+weapon->getMobility());
+	missionEfficiency+= mission->getViewMod() * _machine->getView();
+	if (_machine->getType() == Machine::AIRCRAFT) //jeœli maszyna jest samolotem
+		missionEfficiency+= mission->getAircraftMod();
+	else
+		missionEfficiency+= mission->getHelicopterMod();
 	if (missionEfficiency > missionDificulty) //misja udana
 	{
-	BusyManager* newBusy = new BusyCombatManager(machine, _cv, NUMBER_OF_TURNS_IN_FIGHT, NO_CHANGE, -mission->getMachineHPLossOnWin(), 
+	BusyManager* newBusy = new BusyCombatManager(_machine, _cv, NUMBER_OF_TURNS_IN_FIGHT, NO_CHANGE, -mission->getMachineHPLossOnWin(), 
 		mission->getPointsReward(), mission->getScoutReward(), MISSION_WON); //wartoœci do odjêcia przekazujemy jako ujemne
 		_busyManager->addBusy(newBusy);
 	}
 	else
 	{
-	BusyManager* newBusy = new BusyCombatManager(machine, _cv, NUMBER_OF_TURNS_IN_FIGHT, -mission->getCarrierHPLoss(), -mission->getMachineHPLossOnLose(),
+	BusyManager* newBusy = new BusyCombatManager(_machine, _cv, NUMBER_OF_TURNS_IN_FIGHT, -mission->getCarrierHPLoss(), -mission->getMachineHPLossOnLose(),
 		-mission->getPointsLoss(), -mission->getScoutLoss(), MISSION_LOST);	//wartoœci do odjêcia przekazujemy jako ujemne
 		_busyManager->addBusy(newBusy);
 	}
-
+	_machine = NULL; //wybrany samolot wylecia³ na misje, wiêc nie ma ¿adnego, który móg³by podj¹æ siê misji
 	
 }
 

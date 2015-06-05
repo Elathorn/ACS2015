@@ -1,5 +1,6 @@
 #pragma once
 #include "GraphicManager.h"	
+#include "GraphicMachinesManager.h"
 
 
 class GraphicGameManager: public GraphicManager
@@ -30,7 +31,7 @@ public:
 
 	
 protected: //magic 
-	static const char TopBarTurn = 0, TopBarHP = 1, TopBarPoints = 2, TopBarScoutPoints = 3;
+	static const int TopBarTurn = 0, TopBarHP = 1, TopBarPoints = 2, TopBarScoutPoints = 3;
 	static const int TOP_BAR_ELEMENTS = 4;
 	static const int TOP_BAR_HEIGHT = 42;
 	static const int GAP_BEETWEN_ELEMENTS = 25;
@@ -58,10 +59,13 @@ protected:
 	GameLogic* _gameLogic;
 	Font _font; 
 	Text* _text[Operation::MISSIONS_IN_OPERATION];
+	void createMissionInfoWindow(String);
 
 	
 
 protected: //magic
 	static const int GAP_BEETWEN_ELEMENTS = 10;
 	static const int BAR_TOP_END = 81;
+	static const int MISSION_INFO_RES_X = 640;
+	static const int MISSION_INFO_RES_Y = 360;
 };

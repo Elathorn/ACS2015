@@ -64,9 +64,10 @@ void IOManager::loadMachinesOnCarrier (string location)
 	jumpOverComment(in);
 	int machineID, weaponID; char status;
 	Machine* machine;
-	while (!in.eof())
+	int i=0;
+	while (in >> machineID >> weaponID >> status)
 	{
-		in >> machineID >> weaponID >> status;
+		i++;
 		machine = new Machine(*_gameLogic->getMachine(machineID), status); //kopiujemy maszyne z layoutu
 		machine->setWeapon(_gameLogic->getWeapon(weaponID)); //dajemy jej broñ
 		_gameLogic->getCV()->addMachine(machine);

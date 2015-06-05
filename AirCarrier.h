@@ -23,6 +23,7 @@ public:
 	//machines
 	void addMachine(Machine* machine) {_MachinesList.push_back(machine);} //dodanie maszyny do listy maszyn gry
 	Machine* getMachine(int id) {return _MachinesList[id];}
+	int getAmountOfMachines() {return _MachinesList.size();}
 
 
 protected:

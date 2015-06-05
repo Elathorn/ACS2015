@@ -1,19 +1,19 @@
 #pragma once
 #include <string>
 #include "Weapon.h"
-#include <SFML\System\String.hpp>
-using namespace sf;
+#include <SFML\Graphics.hpp>
+using namespace std;
 
 class Machine
 {
 public:
 	//Konstruktor i destruktor
-	Machine(String name, short int hp, char type, Weapon* weapon, int _mobility, int _view, char _status); //konstruktor do wczytywania
+	Machine(string name, short int hp, char type, Weapon* weapon, int _mobility, int _view, char _status); //konstruktor do wczytywania
 	//z plików, zarówno layoutów maszyn jak i (przysz³oœciowo) z save
 	Machine(Machine& layout, char status); //konstruktor w³asciwy dla dodawania nowych maszyn dla gracza
 	~Machine(void);
 	//GETery
-	String getName() {return _name;}
+	string getName() {return _name;}
 	int getHP() {return _hp;}
 	sf::String getHPStatus(); //zwraca opisowy status maszyny
 	char getType() {return _type;}
@@ -26,8 +26,18 @@ public:
 	void setStatus(char status) {_status=status;}
 	//inne
 	void changeHP (int amount);
+	//overload ==
+	friend bool operator==(const Machine& lhs, const Machine& rhs)
+	{
+		if (lhs._hp == rhs._hp)
+			if (true)
+				return true;
+		else
+			return false;
+	}
+	friend bool operator!=(const Machine& lhs, const Machine& rhs) {return !(lhs==rhs);}
 protected:
-	String _name;  //nazwa pojazdu
+	string _name;  //nazwa pojazdu
 	int _hp; //liczba HP (0-100)
 	char _type; // (H)eli, (A)ircraft
 	Weapon* _weapon; //wskaŸnik do aktualnie wybranej broni 
@@ -36,7 +46,7 @@ protected:
 	char _status; //status pojazdu, (A)vailable, (B)usy, (D)estroyed, (L)ayout
 
 
-protected:	//"MAGIC NUMBERS"
+public:	//"MAGIC NUMBERS"
 	static const char HELI='H';
 	static const char AIRCRAFT='A';
 	static const char AVAILABLE='A';
@@ -44,6 +54,8 @@ protected:	//"MAGIC NUMBERS"
 	static const char DESTROYED='D';
 	static const char LAYOUT='L';
 
+	
+protected:	//"MAGIC NUMBERS"
 	static const int MAX_HP = 100;
 	static const int MIN_HP = 0;
 	static const int EFFICENT_THRESHOLD = 80;
