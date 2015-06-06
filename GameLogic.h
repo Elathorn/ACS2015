@@ -18,6 +18,7 @@ public:
 	//GETTERY i ADDERY
 	void addWeapon(Weapon* weapon){_WeaponsList.push_back(weapon);}
 	Weapon* getWeapon(int id) {return _WeaponsList[id];}
+	int getWeaponsAmount() {return _WeaponsList.size();}
 
 	void addMachine(Machine* machine) {_MachinesList.push_back(machine);}
 	Machine* getMachine (int id) {return _MachinesList[id];}
@@ -49,10 +50,11 @@ protected:
 	AirCarrier* _cv;
 	BusyManager* _busyManager;
 
-protected: //magic words
+public: //magic words
 	static const bool MISSION_WON = true;
 	static const bool MISSION_LOST = false;
 	static const int NO_CHANGE = 0;
 	static const int NUMBER_OF_TURNS_IN_FIGHT = 3;
+	static const int NUMBER_OF_REARMENT_TURNS = 1;
 };
 

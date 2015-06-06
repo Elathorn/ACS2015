@@ -47,8 +47,7 @@ protected:
 class BusyRearmManager: public BusyManager
 {
 public:
-	BusyRearmManager(Machine*, Weapon*, int);
+	BusyRearmManager(Machine*, int);
 	void busyEnd();
 protected:
-	Weapon* _weapon;
 };

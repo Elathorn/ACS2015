@@ -155,10 +155,7 @@ GraphicGameManager::~GraphicGameManager(void)
 
 void::GraphicGameManager::runGame()
 {
-	
-	//CHWILOWE!!!!!!!!!!!!!!!!
-	_campaign->getOperation()->scout(); //check it
-	//END OF CHWILOWE!!!!!!!!!!!!!!!
+	_campaign->getOperation()->scout(); //przeprowadzamy pierwszy zwiad
 	Texture backgroundImage; 
 	backgroundImage.loadFromFile(GRAPHIC_LOCATION+"game_background.jpg");
 	Sprite backgroundSprite;
@@ -166,9 +163,10 @@ void::GraphicGameManager::runGame()
 	TopBar* topBar = new TopBar(_mainWindow, _campaign, _gameLogic);
 	MissionsBar* missionsBar = new MissionsBar(_mainWindow, _campaign, _gameLogic);
 	Text* machinesWindow = new Text(L"Hangar maszyn", _font, GraphicManager::GAME_STANDARD_TEXT_SIZE);
+	Text nextTurn(L"Nastêpna tura", _font, GraphicManager::GAME_STANDARD_TEXT_SIZE);
 	machinesWindow->setPosition(1100, 115);
 	machinesWindow->setColor(Color::Red);
-
+	nextTurn.setPosition(1100, 145);
 	while (GraphicManager::getGameState() == GAME_SP)
 	{
 		Vector2f mouse(Mouse::getPosition(_mainWindow));
@@ -183,12 +181,15 @@ void::GraphicGameManager::runGame()
 					GraphicMachinesManager* graphicMachinesManager = new GraphicMachinesManager(_mainWindow, _gameLogic);
 					graphicMachinesManager->runWindow();
 					delete graphicMachinesManager;
-
 				}
-		//JEŒLI NOWA TURA TO ZAKTUALIZOWAC LICZNIK Top bara
-			//topBar->actualTopBar();
-			//missionsBar->actualisation();
 		}
+		if (event.type == Event::MouseButtonReleased && event.key.code == Mouse::Left && nextTurn.getGlobalBounds().contains(mouse)) 
+		{
+			_campaign->getOperation()->proceedTurn();
+			topBar->actualTopBar();
+			missionsBar->actualisation();
+		}
+
 
 		if (machinesWindow->getGlobalBounds().contains(mouse))
 			machinesWindow->setStyle(Text::Underlined);
@@ -199,6 +200,7 @@ void::GraphicGameManager::runGame()
 		//RYSOWANIE
 		_mainWindow.draw(backgroundSprite);
 		_mainWindow.draw(*machinesWindow);
+		_mainWindow.draw(nextTurn);
 		topBar->drawTopBar();
 		missionsBar->draw();
 

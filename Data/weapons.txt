@@ -2,3 +2,5 @@ Format pliku: nazwa, atak przeciw piechocie, atak przeciw pojazdom, atak plot, a
 !
 Maverick 10 20 20 10 0 0 -3 A
 GAU-8 0 5 5 20 0 0 -5 A
+Sidewinder 0 5 5 20 0 0 -5 B
+Dzialko 0 5 5 20 0 0 -5 H

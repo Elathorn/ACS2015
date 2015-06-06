@@ -32,9 +32,8 @@ void IOManager::loadWeapons(string location)
 	string name; //zmienne tymczasowe do wczytywania danych z pliku
 	int soft, hard, air, naval, asw, sead, mov;
 	char av;
-	while (!in.eof()) //g³ówna pêtla metody
+	while (in >> name >> soft >> hard >> air >> naval >> asw >> sead >> mov >> av) //g³ówna pêtla metody, wczytujemy dane
 	{
-		in >> name >> soft >> hard >> air >> naval >> asw >> sead >> mov >> av; //wczytujemy dane
 		Weapon* weapon = new Weapon (name, soft, hard, air, naval, asw, sead, mov, av); //tworzymy layout
 		_gameLogic->addWeapon(weapon); //i zapisujemy go w game logic
 	}
@@ -46,10 +45,9 @@ void IOManager::loadMachines (string location)
 	jumpOverComment(in);
 	string name;
 	int hp; char type; int weapon, mobility, view; char av;
-	while (!in.eof())
+	while (in >> name >> hp >> type >> weapon >> mobility >> view >> av)
 	{
 		Machine* machine;
-		in >> name >> hp >> type >> weapon >> mobility >> view >> av;
 		if (weapon != NO_WEAPON) //jeœli maszyna posiada zapisan¹ wczeœniej broñ
 			machine = new Machine(name, hp, type, _gameLogic->getWeapon(weapon), mobility, view, av); //to wczytujemy j¹ i zapisujemy z
 		else

@@ -1,25 +1,27 @@
 #include "GraphicMachinesManager.h"
 
+string GraphicMachinesManager::WeaponStatsToString(Weapon* weap)
+{
+	string text = to_string(weap->getSoftAttack()) + "/" + to_string(weap->getHardAttack()) + "/" + to_string(weap->getAirAttack()) + "/";
+	text+= to_string(weap->getNavalAttack()) + "/" + to_string(weap->getASWAttack()) + "/" + to_string(weap->getSEADAttack());
+	return text;
+}
 
 GraphicMachinesManager::GraphicMachinesManager(RenderWindow& window, GameLogic* gameLogic): _mainWindow(window), AMOUNT_OF_MACHINES(gameLogic->getCV()->getAmountOfMachines())
 {
 	_font.loadFromFile(GraphicManager::FONTS_LOCATION+"arial.ttf");
 	_gameLogic=gameLogic;
 	_cv=_gameLogic->getCV();
-	Text* text;
-	Weapon* weap;
 	for (int i = 0; i<AMOUNT_OF_MACHINES; i++)
 	{
+		Text* text;
 		Machine* mach = _cv->getMachine(i); //dla u³atwienia zapisów i poprawienia czytelnoœci
 		text = new Text (mach->getName() + " (" + mach->getHPStatus() + ")", _font, GraphicManager::GAME_STANDARD_TEXT_SIZE); //pobieramy nazwy maszyn
 		_machines.push_back(text);
-		weap = _cv->getMachine(i)->getWeapon(); //dla u³atwienia zapisów i poprawienia czytelnoœci
+		Weapon* weap = mach->getWeapon(); //dla u³atwienia zapisów i poprawienia czytelnoœci
 		text = new Text (weap->getName(), _font, GraphicManager::GAME_STANDARD_TEXT_SIZE);//i broni
 		_weapons.push_back(text);
-		//wczytujemy statystyki bronii do jednego tekstu
-		//TO DO: dodaæ HP, modyfikacje mobilnoœci przez maszyne i zwiad. Oraz typ
-		String statistics_list = to_string(weap->getSoftAttack()) + "/" + to_string(weap->getHardAttack()) + "/" + to_string(weap->getAirAttack()) + "/";
-		statistics_list+= to_string(weap->getNavalAttack()) + "/" + to_string(weap->getASWAttack()) + "/" + to_string(weap->getSEADAttack());
+		string statistics_list = WeaponStatsToString(weap); //wczytujemy statystyki bronii do jednego tekstu
 		text = new Text (statistics_list, _font, GraphicManager::GAME_STANDARD_TEXT_SIZE);
 		_weaponsStats.push_back(text);
 		statistics_list = to_string(mach->getMobility()+weap->getMobility()) + "/" + to_string(mach->getView());
@@ -48,9 +50,37 @@ GraphicMachinesManager::~GraphicMachinesManager(void)
 		delete _machines[i];
 		delete _weapons[i];
 		delete _weaponsStats[i];
+		delete _machinesStats[i];
 	}
 }
 
+void GraphicMachinesManager::actualTexts()
+{	
+	for (int i=0; i<AMOUNT_OF_MACHINES; i++)
+	{ //czyszczenie pamiêci, która nie bêdzie ju¿ u¿ywana
+		delete _weapons[i];
+		delete _weaponsStats[i];
+		delete _machinesStats[i];
+	}
+	//zwalnianie miejsca w vectorach
+	_weapons.clear();
+	_weaponsStats.clear();
+	_machinesStats.clear();
+	for (int i = 0; i<AMOUNT_OF_MACHINES; i++)
+	{
+		Text* text;
+		Machine* mach = _cv->getMachine(i); //dla u³atwienia zapisów i poprawienia czytelnoœci
+		Weapon* weap = mach->getWeapon(); //dla u³atwienia zapisów i poprawienia czytelnoœci
+		text = new Text (weap->getName(), _font, GraphicManager::GAME_STANDARD_TEXT_SIZE);//i broni
+		_weapons.push_back(text);
+		string statistics_list = WeaponStatsToString(weap); //wczytujemy statystyki bronii do jednego tekstu
+		text = new Text (statistics_list, _font, GraphicManager::GAME_STANDARD_TEXT_SIZE);
+		_weaponsStats.push_back(text);
+		statistics_list = to_string(mach->getMobility()+weap->getMobility()) + "/" + to_string(mach->getView());
+		text = new Text (statistics_list, _font, GraphicManager::GAME_STANDARD_TEXT_SIZE);
+		_machinesStats.push_back(text);
+	}
+}
 
 void GraphicMachinesManager::runWindow()
 {
@@ -68,7 +98,7 @@ void GraphicMachinesManager::runWindow()
 			if (event.type == Event::Closed)
 				return;
 			//podœwietlenia tekstów aktywnych
-			for (int i=0; i<_machines.size(); i++)
+			for (int i=0; i<AMOUNT_OF_MACHINES; i++)
 			{
 				if (_machines[i]->getGlobalBounds().contains(mouse))
 					_machines[i]->setColor(Color::Red);
@@ -86,6 +116,25 @@ void GraphicMachinesManager::runWindow()
 				if (_machines[i]->getGlobalBounds().contains(mouse) && mach->getStatus()==Machine::AVAILABLE && event.type == Event::MouseButtonPressed)
 					_gameLogic->setMachine(_cv->getMachine(i));
 			}
+			//zmiana wyposa¿enia
+			for (int i=0; i<AMOUNT_OF_MACHINES; i++)
+			{
+				Machine* mach = _cv->getMachine(i);
+				Weapon* weap = mach->getWeapon();
+				if (_weapons[i]->getGlobalBounds().contains(mouse) && mach->getStatus()==Machine::AVAILABLE && event.type == Event::MouseButtonPressed)
+				{
+					mach->setWeapon(changeWeapon(mach->getType())); //zmieniamy broñ na maszynie
+					if (mach->getWeapon() == NULL) //jeœli zmiana broni nie dojdzie do skutku
+						mach->setWeapon(weap); //przywracamy star¹ broñ
+					else
+					{
+						BusyManager* tempBusy = new BusyRearmManager(mach, GameLogic::NUMBER_OF_REARMENT_TURNS); //tworzymy status "busy" z powodu przezbrojenia
+						_gameLogic->getBusyManager()->addBusy(tempBusy); //przekazujemy go do BusyManager
+						actualTexts(); //aktualizujemy teksty
+					}
+				}
+			}
+
 		}
 		setPosition();
 		_mainWindow.clear();
@@ -170,4 +219,84 @@ void GraphicMachinesManager::setPosition()
 			y_coord+=GAP_BEETWEN_ELEMENTS_Y; //_machines[i]->getGlobalBounds().width/2 + 
 		}
 	}
+}
+
+
+Weapon* GraphicMachinesManager::changeWeapon (char machineType)
+{
+	int weaponsAmount = _gameLogic->getWeaponsAmount();
+	vector<Text*> weaponsStats; 
+	vector<Text*> weaponsName;
+	vector<Weapon*> weaponPointers; //przechowywanie wskaŸników do broni
+	Text nameInfoText(L"Nazwa broni", _font, GraphicManager::GAME_STANDARD_TEXT_SIZE);
+	Text statsInfoText(L"SA/HA/AA/NA/ASW/SEAD", _font, GraphicManager::GAME_STANDARD_TEXT_SIZE);
+	for (int i=0; i<weaponsAmount; i++)
+	{
+		Weapon* weap = _gameLogic->getWeapon(i); 
+		if (weap->getAvailability() == Weapon::CAN_MOUNT_ON_BOTH || weap->getAvailability() == machineType) //wczytanie broni dostêpnych na maszynie do vectora
+		{
+			string strWeaponStats = WeaponStatsToString(weap);
+			Text* text = new Text(strWeaponStats, _font, GraphicManager::GAME_STANDARD_TEXT_SIZE);
+			weaponsStats.push_back(text);
+			text = new Text(weap->getName(), _font, GraphicManager::GAME_STANDARD_TEXT_SIZE);
+			weaponsName.push_back(text);
+			weaponPointers.push_back(weap); //zachowujemy wskaŸnik na wypadek jakby ta broñ zosta³a wybrana
+		}
+	}
+	RenderWindow window(VideoMode(750,492), L"Wybór wyposa¿enia", Style::Titlebar | Style::Close); //stworzenie okna
+	//wczytanie t³a
+	Texture backgroundImage;
+	backgroundImage.loadFromFile(GraphicManager::GRAPHIC_LOCATION+"weapon_select_background.jpg");
+	Sprite background;
+	background.setTexture(backgroundImage);
+	//ustalanie pozycji tekstów
+	nameInfoText.setPosition(20, 20);
+	statsInfoText.setPosition(150, 20);
+	for (int i=0; i<weaponsStats.size(); i++)
+	{
+		weaponsName[i]->setPosition(20, 40+i*GAP_BEETWEN_ELEMENTS_Y);
+		weaponsStats[i]->setPosition(150, 40+i*GAP_BEETWEN_ELEMENTS_Y);
+	}
+
+	while (window.isOpen())
+	{
+		Vector2f mouse(Mouse::getPosition(window));;
+		Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == Event::Closed)
+			{
+				for (int i=0; i<weaponsStats.size(); i++)
+				{ //czyszczenie pamiêci
+					delete weaponsStats[i];
+					delete weaponsName[i];
+				}
+				return NULL;
+			}
+			for (int i=0; i<weaponsName.size(); i++)
+				if (event.type == Event::MouseButtonPressed && event.key.code == Mouse::Left && weaponsName[i]->getGlobalBounds().contains(mouse))
+				{
+					delete weaponsStats[i];
+					delete weaponsName[i];
+					return weaponPointers[i];
+				}
+			for (int i=0; i<weaponsName.size(); i++)
+				if (weaponsName[i]->getGlobalBounds().contains(mouse))
+					weaponsName[i]->setColor(Color::Red);
+				else
+					weaponsName[i]->setColor(Color::White);
+		}
+		//rysowanie
+		window.clear();
+		window.draw(background);
+		for (int i=0; i<weaponsStats.size(); i++)
+		{
+			window.draw(*weaponsStats[i]);
+			window.draw(*weaponsName[i]);
+		}
+		window.draw(nameInfoText);
+		window.draw(statsInfoText);
+		window.display();
+	}
+	return NULL;
 }

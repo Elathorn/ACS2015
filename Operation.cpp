@@ -28,14 +28,14 @@ Operation::~Operation(void)
 
 void Operation::startMission(int id)
 {
-	if (NO_MISSION==id)
+	if (NO_MISSION==_missionsList[id])
 	{
 		 //nie ma misji, nie ma zabawy :(
 		//TO DO? ^ odwo³anie do interfejsu o tym, ¿e nic siê nie sta³o?
 	}
 	else
 	{
-		_gameLogic->calculateMission(id);
+		_gameLogic->calculateMission(_missionsList[id]);
 	}
 	if (++_nextMission == MISSIONS_IN_OPERATION)
 		return; //TO DO metoda zwracaj¹ca kampanii informacji o zakoñczeniu operacji
@@ -73,6 +73,8 @@ void Operation::scout()
 
 void Operation::proceedTurn()
 {
+	if (_gameLogic->getActualMachine() == NULL) //jeœli nie wybrano maszyny
+		return; //nic nie robimy
 	startMission(_nextMission); //startujemy misje, nextMission roœnie o jeden
 	scout(); //przeprowadzamy zwiad
 	_gameLogic->getBusyManager()->busyEndTurnCheck(); //zajmujemy siê "zajêtymi" samolotami

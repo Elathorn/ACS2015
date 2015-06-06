@@ -28,7 +28,7 @@ protected:
 	int _mobility; //zmiana w mobilnoœci pojazdu
 	char _availability; //mo¿na zamontowaæ na H (heli), A (aircraft), B (both), U (unavaible, "brak na stanie")
 
-protected: //MAGIC NUMBERS
+public: //MAGIC NUMBERS
 	static const char CAN_MOUNT_ON_HELI = 'H';
 	static const char CAN_MOUNT_ON_AIRCRAFT = 'A';
 	static const char CAN_MOUNT_ON_BOTH = 'B';

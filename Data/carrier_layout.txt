@@ -3,3 +3,9 @@ Kolejnoœæ zgodna z plikami weapons.txt, machines.txt, liczona od zera
 !
 0 0 A
 1 0 A
+0 0 A
+1 0 A
+0 0 A
+1 0 A
+0 0 A
+1 0 A

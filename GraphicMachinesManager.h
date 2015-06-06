@@ -33,7 +33,11 @@ protected: //magic
 	static const int INFO_TEXT_MACHINE_AVAIBLE = 0, INFO_TEXT_MACHINE_BUSY = 1, INFO_TEXT_MACHINE_DESTROYED = 2, INFO_TEXT_WEAPON = 3, 
 		INFO_TEXT_WEAPON_STATS = 4, INFO_TEXT_MACHINE_STATS = 5, INFO_TEXT_ACTIVE_MACHINE = 6;
 protected:
+	void actualTexts(); //aktualizuje teksty broni
 	void setPosition(); //ustawia pozycje dla tekstów
+	Weapon* changeWeapon(char); //zmienia broñ na maszynie
+	string WeaponStatsToString(Weapon*); 
+
 
 	RenderWindow& _mainWindow;
 	GameLogic* _gameLogic;

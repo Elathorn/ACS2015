@@ -59,16 +59,15 @@ void BusyCombatManager::busyEnd()
 	//przekazanie informacji do operations o wygranej/przegranej
 }
 
-BusyRearmManager::BusyRearmManager(Machine* machine, Weapon* weapon, int turns)
+BusyRearmManager::BusyRearmManager(Machine* machine, int turns)
 {
 	_machine = machine;
-	_weapon=weapon;
+	machine->setStatus(BUSY);
 	_turns=turns;
 }
 
 void BusyRearmManager::busyEnd()
 {
-	_machine->setWeapon(_weapon); //zmieniamy broñ
 	_machine->setStatus(AVAILABLE); //i nasza maszyna jest gotowa do boju
 	//TO DO
 		//PRZEKAZANIE INFORMACJI DO INTERFEJSU
