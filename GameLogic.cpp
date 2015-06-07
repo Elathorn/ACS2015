@@ -39,13 +39,13 @@ void GameLogic::calculateMission(int missionNumber)
 	if (missionEfficiency > missionDificulty) //misja udana
 	{
 	BusyManager* newBusy = new BusyCombatManager(_machine, _cv, NUMBER_OF_TURNS_IN_FIGHT, NO_CHANGE, -mission->getMachineHPLossOnWin(), 
-		mission->getPointsReward(), mission->getScoutReward(), MISSION_WON); //wartoœci do odjêcia przekazujemy jako ujemne
+		mission->getPointsReward(), mission->getScoutReward(), MISSION_WON, mission->getMissionWin()); //wartoœci do odjêcia przekazujemy jako ujemne
 		_busyManager->addBusy(newBusy);
 	}
 	else
 	{
 	BusyManager* newBusy = new BusyCombatManager(_machine, _cv, NUMBER_OF_TURNS_IN_FIGHT, -mission->getCarrierHPLoss(), -mission->getMachineHPLossOnLose(),
-		-mission->getPointsLoss(), -mission->getScoutLoss(), MISSION_LOST);	//wartoœci do odjêcia przekazujemy jako ujemne
+		-mission->getPointsLoss(), -mission->getScoutLoss(), MISSION_LOST, mission->getMissionWin());	//wartoœci do odjêcia przekazujemy jako ujemne
 		_busyManager->addBusy(newBusy);
 	}
 	_machine = NULL; //wybrany samolot wylecia³ na misje, wiêc nie ma ¿adnego, który móg³by podj¹æ siê misji

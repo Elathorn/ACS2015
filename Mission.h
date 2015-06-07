@@ -1,10 +1,12 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include <string>
+using namespace std;
 using namespace sf;
 class Mission
 {
 public:
-	Mission(String, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, String, String, String);
+	Mission(String, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, string, string, string);
 	~Mission(void);
 
 	//GETery
@@ -33,9 +35,9 @@ public:
 	int getMachineHPLossOnLose() {return _machineHPLossOnLose;}
 	int getCarrierHPLoss() {return _carrierHPLoss;} 
 
-	String getMissionInfo() {return _missionInfo;}
-	String getMissionWin() {return _missionWin;}
-	String getMissionLose() {return _missionLose;}
+	string getMissionInfo() {return _missionInfo;}
+	string getMissionWin() {return _missionWin;}
+	string getMissionLose() {return _missionLose;}
 protected:
 	String _name; //nazwa misji
 	int _missionDifficulty; //poziom trudnoœci misji
@@ -60,9 +62,9 @@ protected:
 	int _machineHPLossOnLose; 
 	int _carrierHPLoss; //strata HP na lotniskowcu
 	//Teksty
-	String _missionInfo; //informacja o misji
-	String _missionWin; //informacja po wygranej
-	String _missionLose; //informacja po przegranej
+	string _missionInfo; //informacja o misji
+	string _missionWin; //informacja po wygranej
+	string _missionLose; //informacja po przegranej
 
 protected: //MAGIC WORDS
 };

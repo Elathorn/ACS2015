@@ -2,9 +2,10 @@
 #include "Machine.h"
 #include "AirCarrier.h"
 #include "Weapon.h"
+#include <SFML\Graphics.hpp>
 #include <list>
 using namespace std;
-
+using namespace sf;
 
 class BusyManager
 {
@@ -13,9 +14,9 @@ public:
 	~BusyManager(void);
 
 	void busyEndTurnCheck();
-
 	void addBusy(BusyManager* busy) {_busyManagers.push_back(busy);}
-	virtual void busyEnd() {return;}
+	virtual String busyEnd() {return "";}
+	void createPopUp(String text);
 
 protected:
 	Machine* _machine;
@@ -31,9 +32,9 @@ protected: //magic here, as always
 class BusyCombatManager: public BusyManager
 {
 public:
-	BusyCombatManager(Machine*, AirCarrier*, int, int, int, int, int, bool);
+	BusyCombatManager(Machine*, AirCarrier*, int, int, int, int, int, bool, string);
 
-	void busyEnd();
+	String busyEnd();
 protected:
 	AirCarrier* _cv;
 	bool _victory;
@@ -41,6 +42,7 @@ protected:
 	int _machineHPChange;
 	int _pointsChange;
 	int _scoutPointsChange;
+	string _debrief; //debriefing
 protected:
 };
 
@@ -48,6 +50,6 @@ class BusyRearmManager: public BusyManager
 {
 public:
 	BusyRearmManager(Machine*, int);
-	void busyEnd();
+	String busyEnd();
 protected:
 };

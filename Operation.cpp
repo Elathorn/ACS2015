@@ -38,7 +38,10 @@ void Operation::startMission(int id)
 		_gameLogic->calculateMission(_missionsList[id]);
 	}
 	if (++_nextMission == MISSIONS_IN_OPERATION)
-		return; //TO DO metoda zwracaj¹ca kampanii informacji o zakoñczeniu operacji
+	{
+		_gameLogic->getBusyManager()->busyEnd(); //koñczymy wszystkie operacje
+		return;
+	}//TO DO metoda zwracaj¹ca kampanii informacji o zakoñczeniu operacji
 	//TO DO zczyszczenie znaczników busy na potrzebê nastêpnej operacji
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }

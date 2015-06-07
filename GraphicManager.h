@@ -2,7 +2,6 @@
 #include "IOManager.h"
 #include "Campaign.h"
 #include "GameLogic.h"
-#include <SFML\Graphics.hpp>
 using namespace sf;
 
 
