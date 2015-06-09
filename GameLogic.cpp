@@ -16,10 +16,6 @@ GameLogic::~GameLogic(void)
 
 void GameLogic::calculateMission(int missionNumber)
 {
-	//TO DO
-	//METODA DO WYBIERANIA SAMOLOTU
-	//
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	Mission* mission = _MissionsList[missionNumber];
 	Weapon* weapon = _machine->getWeapon();
 	int missionDificulty = mission->getMissionDifficulty();

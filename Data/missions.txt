@@ -1,22 +1,20 @@
 !
-*Misja testow¹¹¹¹.*
+*Misja testowa*
 6
 1 0 0 0 0 0
 0 0 0 0
 1 2 1
 1 2 3 4
-*Wow, wow, ta
-ka trudna
- misja!*
+*Pierwszy opis misji*
 *Wygra³eœ, najs!*
 *Przegra³eœ, lama!*
 
-*Druga misja testowa, huh?¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹¹*
+*Druga misja testowa*
 1
 1 2 3 4 5 6
 1 2 3 4
 1 2 3
 1 2 3 4
-*you sure what you're doing?*
-*TAK JESTEM!*
-*JESTÊ HELIKOPTERÊ*
+*To tylko opis*
+*Like a boss*
+*Well... not like a boss*
